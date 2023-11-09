@@ -27,10 +27,17 @@ keys = [
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
 
     # Midia control
-    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -c 0 set Master 5+ unmute")),
-    Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -c 0 set Master 5- unmute")),
+    # Whith pactl
+    #Key([], "XF86AudioRaiseVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +5%")),
+    #Key([], "XF86AudioLowerVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -5%")),
+    #Key([], "XF86AudioMute", lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle")),
+    # Whith amixer
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer set Master 5%+ unmute")),
+    Key([], "XF86AudioLowerVolume", lazy.spawn("amixer set Master 5%- unmute")),
     Key([], "XF86AudioMute", lazy.spawn("amixer -q set Master toggle")),
-
+    Key([], "XF86AudioMicMute", lazy.spawn("amixer set Capture togglemute")),
+    Key([], "XF86MonBrightnessDown", lazy.spawn("xbacklight -5")),
+    Key([], "XF86MonBrightnessUp", lazy.spawn("xbacklight +5")),
     # Switch between windows
     Key([mod], "j", lazy.layout.left(), desc="Move focus to left"),
     Key([mod], "k", lazy.layout.down(), desc="Move focus down"),
@@ -59,13 +66,16 @@ keys = [
     # multiple stack panes
     Key([mod, "shift"], "Return", lazy.layout.toggle_split(), desc="Toggle between split and unsplit sides of stack"),
     # Toggle between different layouts as defined below
-    Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
-    Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
-    Key([mod], "f", lazy.window.toggle_fullscreen(),desc="Toggle fullscreen on the focused window"),
-    Key([mod], "t", lazy.window.toggle_floating(), desc="Toggle floating on the focused window"),
-    Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
-    Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-    Key([mod], "d", lazy.spawn("rofi -show run")),
+    Key([mod], "Tab",           lazy.screen.next_group(skip_empty=True),        desc="Move to the group on the right, ignoring empty groups"),
+    Key([mod,  "shift"], "Tab", lazy.screen.prev_group(skip_empty=True),        desc="Move to the group on the left, ignoring empty groups"), 
+    Key([mod,  "control"], "Tab", lazy.screen.toggle_group(),        desc="Move to the last visited group"),
+    Key([mod], "w",             lazy.window.kill(),              desc="Kill focused window"),
+    Key([mod], "f",             lazy.window.toggle_fullscreen(), desc="Toggle fullscreen on the focused window"),
+    Key([mod], "t",             lazy.window.toggle_floating(),   desc="Toggle floating on the focused window"),
+    Key([mod,  "control"], "r", lazy.reload_config(),            desc="Reload the config"),
+    Key([mod,  "control"], "q", lazy.shutdown(),                 desc="Shutdown Qtile"),
+    Key([mod,  "shift"], "x",   lazy.spawn("i3lock"),            desc="Lock Screen"),
+    Key([mod], "d",             lazy.spawn("rofi -show drun")),
 ]
 
 #groups = [Group(i) for i in "123456789"]
@@ -88,31 +98,38 @@ for i in groups:
             # mod1 + letter of group = switch to group
             Key([mod], i.name, lazy.group[i.name].toscreen(), desc="Switch to group {}".format(i.name),),
             # mod1 + shift + letter of group = switch to & move focused window to group
-            #Key(
-            #    [mod, "shift"],
-            #    i.name,
-            #    lazy.window.togroup(i.name, switch_group=True),
-            #    desc="Switch to & move focused window to group {}".format(i.name),
-            #),
+            Key(
+                [mod, "shift"],
+                i.name,
+                lazy.window.togroup(i.name, switch_group=True),
+                desc="Switch to & move focused window to group {}".format(i.name),
+            ),
             # Or, use below if you prefer not to switch to that group.
             # # mod1 + shift + letter of group = move focused window to group
-             Key([mod, "shift"], i.name, lazy.window.togroup(i.name),
-                 desc="move focused window to group {}".format(i.name)),
+            Key([mod, "control"], i.name, lazy.window.togroup(i.name),
+                desc="move focused window to group {}".format(i.name)),
         ]
     )
 
+layout_theme = {"border_width": 10,
+                "margin": 8,
+                "border_focus": "#d75f5f",
+                "border_normal": "#8f3d3d",
+                }
+
 layouts = [
     layout.Columns(
-        border_focus_stack=["#d75f5f", "#8f3d3d"],
-        border_width=4,
-        margin=[8,6,8,6],
+        **layout_theme,
+        #border=["#d75f5f", "#8f3d3d"],
+        #border_width=4,
+        #margin=[8,6,8,6],
         ),
     layout.Max(),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
     # layout.Matrix(),
-    # layout.MonadTall(),
+    layout.MonadTall(**layout_theme),
     # layout.MonadWide(),
     # layout.RatioTile(),
     # layout.Tile(),
@@ -174,10 +191,10 @@ screens = [
                 ),
             ],
             24,
-            # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
+            # border_width=[2, 0, 2, 0],  # Draw top and bottom borders_focus_stack
             # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
         ),
-        # You can uncomment this variable if you see that on X11 floating resize/moving is laggy
+        # You can uncomment this variable if you see that on X11 floating resize/moving is laggy_focus_stack
         # By default we handle these events delayed to already improve performance, however your system might still be struggling
         # This variable is set to None (no cap) by default, but you can set it to 60 to indicate that you limit it to 60 events per second
         # x11_drag_polling_rate = 60,
