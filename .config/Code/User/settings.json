@@ -1,0 +1,30 @@
+{
+    "window.menuBarVisibility": "toggle",
+    "editor.wordWrap": "on",
+    "files.autoSave": "afterDelay",
+    "workbench.colorTheme": "Dainty – Nord (chroma 1, lightness 2)",
+    "window.zoomLevel": 1,
+    "workbench.iconTheme": "symbols",
+    "workbench.editor.labelFormat": "short",
+    "workbench.tree.indent": 20,
+    "workbench.colorCustomizations": {
+        "editorCursor.foreground": "#ff00dd",
+        "terminalCursor.foreground": "#ff00dd",
+        "tree.indentGuidesStroke": "#ababab"
+    },
+    
+    "explorer.compactFolders": false,
+    "editor.semanticHighlighting.enabled": true,
+    "editor.fontFamily": "JetBrains Mono",
+    "editor.fontSize": 14,
+    "editor.lineHeight": 1.5,
+    //"editor.rulers": [80,120],
+    "editor.renderLineHighlight": "all",
+    "editor.fontLigatures": true,
+    "symbols.hidesExplorerArrows": false,
+    "editor.guides.bracketPairsHorizontal": true,
+    "editor.guides.bracketPairs": "active",
+    "editor.minimap.enabled": false,
+    "editor.cursorStyle": "block",
+    "breadcrumbs.enabled": false,
+}
