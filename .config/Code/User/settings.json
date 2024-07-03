@@ -2,10 +2,9 @@
     "window.menuBarVisibility": "toggle",
     "editor.wordWrap": "on",
     "files.autoSave": "afterDelay",
-    "workbench.colorTheme": "Dainty – Nord (chroma 1, lightness 2)",
     "window.zoomLevel": 1,
     "workbench.iconTheme": "symbols",
-    "workbench.editor.labelFormat": "short",
+    "workbench.editor.labelFormat": "default",
     "workbench.tree.indent": 20,
     "workbench.colorCustomizations": {
         "editorCursor.foreground": "#ff00dd",
@@ -26,5 +25,28 @@
     "editor.guides.bracketPairs": "active",
     "editor.minimap.enabled": false,
     "editor.cursorStyle": "block",
+    "editor.stickyScroll.enabled": false,
+    "terminal.external.linuxExec": "alacritty",
+    "workbench.tree.enableStickyScroll": false,
+    "git.openRepositoryInParentFolders": "never",
     "breadcrumbs.enabled": false,
+    "notebook.lineNumbers": "on",
+    "notebook.cellToolbarVisibility": "hover",
+    "workbench.colorTheme": "Tokyo Night",
+    "indentRainbow.colors": [
+        "rgba(3, 4, 94,0.15)",
+        "rgba(2, 62, 138,0.15)",
+        "rgba(0, 119, 182, 0.15)",
+        "rgba(0, 150, 199,0.15)",
+        "rgba(0, 180, 216,0.15)",
+        "rgba(72, 202, 228,0.15)",
+        "rgba(144, 224, 239,0.15)",
+        "rgba(144, 224, 239,0.1)",
+        "rgba(144, 224, 239,0.05)",
+        "rgba(144, 224, 239,0.025)"
+    ],
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "left"
+    }
 }

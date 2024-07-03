@@ -74,7 +74,7 @@ keys = [
     Key([mod], "t",             lazy.window.toggle_floating(),   desc="Toggle floating on the focused window"),
     Key([mod,  "control"], "r", lazy.reload_config(),            desc="Reload the config"),
     Key([mod,  "control"], "q", lazy.shutdown(),                 desc="Shutdown Qtile"),
-    Key([mod,  "shift"], "x",   lazy.spawn("i3lock"),            desc="Lock Screen"),
+    Key([mod,  "shift"], "x",   lazy.spawn("i3lock --color 2e3440"),            desc="Lock Screen"),
     Key([mod], "d",             lazy.spawn("rofi -show drun")),
 ]
 
@@ -184,6 +184,8 @@ screens = [
                 widget.Sep(padding=10),
                 # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
                 # widget.StatusNotifier(),
+                widget.ThermalSensor(),
+                widget.Sep(padding=10),
                 widget.Volume(volume_app="pavucontrol"),
                 widget.Sep(padding=10),
                 widget.Clock(format="%a, %d de %b de %Y - %H:%M"),

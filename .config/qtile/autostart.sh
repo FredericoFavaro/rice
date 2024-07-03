@@ -4,4 +4,5 @@ picom &
 hsetroot -solid "#2e3440" &
 unclutter &
 nm-applet &
+blueman-applet &
 dunst &

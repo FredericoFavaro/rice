@@ -3,3 +3,39 @@ import = [
   "~/.config/alacritty/themes/nord.toml"
 ]
 
+[window]
+dynamic_title = true
+
+[window.padding]
+x = 10
+y = 10
+
+[mouse]
+hide_when_typing = false
+
+[[mouse.bindings]]
+action = "PasteSelection"
+mouse = "Middle"
+
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[colors.cursor]
+cursor = "#ff00dd"
+text   = "#ff00dd"
+
+[cursor]
+unfocused_hollow = true
+style = {shape = "Block", blinking = "On"}
+blink_timeout = 0
+blink_interval = 500
+
+
+[font]
+size = 8.0
+normal = { family = "JetBrains Mono", style = "Regular" }
+bold = { family = "JetBrains Mono" }
+italic = { family = "JetBrains Mono" }
+bold_italic = { family = "JetBrains Mono" }
